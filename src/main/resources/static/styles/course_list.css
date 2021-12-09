@@ -1,0 +1,25 @@
+#submitted_by {
+  float: right;
+}
+#topic-name-courses {
+  margin-top: 2rem;
+}
+.list_course {
+  margin-top: 3.5rem;
+}
+a {
+  text-decoration: none;
+}
+.card-parent {
+  flex-direction: row;
+}
+.upvotes_and_downvotes {
+  margin-top: 1rem;
+  width: 2rem;
+}
+.course-title {
+  width: 33rem;
+}
+.course-metadata {
+  margin-top: 2rem;
+}

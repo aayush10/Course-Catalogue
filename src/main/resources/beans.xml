@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+    <context:property-placeholder location="classpath:dbconn.properties"/>
+    <context:annotation-config/>
+    <bean id = "jdbcconn" class="com.personalproject.Course.Catalogue.dbConn.JDBCConn"/>
+    <bean id = "visitor" class="com.personalproject.Course.Catalogue.models.Visitor"/>
+    <bean id = "person" class="com.personalproject.Course.Catalogue.models.Person"/>
+    <bean id = "dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <constructor-arg name="url" value="jdbc:mysql://127.0.0.1:3306/?user=root"/>
+        <constructor-arg name="username" value="root"/>
+        <constructor-arg name="password" value="Hellomotto24*"/>
+    </bean>
+    <bean id = "jdbcConn" class="com.personalproject.Course.Catalogue.dbConn.JDBCConn"/>
+    <bean id = "jdbcTemp" class = "org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg name = "dataSource" ref="dataSource"/>
+    </bean>
+</beans>
