@@ -1,8 +1,6 @@
 package com.personalproject.Course.Catalogue.models;
 
 import com.personalproject.Course.Catalogue.enums.CourseCategory;
-import com.personalproject.Course.Catalogue.enums.CourseType;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,9 +52,6 @@ public class Topic extends Course{
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
-
-
-
 
     public boolean addCourse(Course course){
         return false;

@@ -9,10 +9,7 @@
 </head>
 <body>
     <div class="container">
-<!--        <h1 th:text = "Topic name Courses"></h1>-->
-        <h1 id="topic-name-courses">Topic Name Courses</h1>
-
-
+        <h1 id="topic-name-courses" th:text="${topicName} +' Courses'"></h1>
         <div class="container list_course">
             <div class="card w-85 card-parent" th:each="coursePost : ${coursePosts}">
                 <div class="upvotes_and_downvotes card-data card-body">
@@ -20,7 +17,7 @@
                     <p>0 Downvotes</p>
                 </div>
                 <div class="card-body card-data course-title">
-                    <h5 class="card-title"><a href="#" th:text="${coursePost.getPostCourseName()}"></a></h5>
+                    <h5 class="card-title"><a th:href="@{{topicName}/{postId}(topicName=${topicName},postId=${coursePost.getPost_id()})}" th:text="${coursePost.getPostCourseName()}"></a></h5>
                     <p class="card-text" th:text="${coursePost.getAbout()}"></p>
                     <div class="course-metadata">
                         <span>0 comments</span>
@@ -28,7 +25,6 @@
                         <span th:text = "'Category: ' + ${coursePost.getCategory()}">category</span>
 <!--                        <span th:text = "'format'+ ${coursePost.getFormats()}">format</span>-->
                         <span th:text = "'Duration '+${coursePost.getDuration()}">duration</span>
-
                         <span th:text = "'Type ' +${coursePost.getType()}">type</span>
                         <span th:text = "'Level '+${coursePost.getLevel()}">level</span>
                         <span id="submitted_by">submitted by:<a href="#" th:text = "${coursePost.getSubmittedBy().getUserName()}"></a></span>
@@ -38,5 +34,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -15,6 +15,7 @@ public class FetchCoursePostsService {
     JdbcTemplate jdbcTemplate;
     @Autowired
     GetUserDetailsService getUserDetailsService;
+
     public List<CoursePost> fetchCoursePosts(){
         String query = "SELECT * FROM coursedb.course_post";
         List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor());
@@ -26,5 +27,9 @@ public class FetchCoursePostsService {
         }
         return coursePosts;
     }
-
+    public List<CoursePost> fetchCoursePosts(int topicId){
+        String query = "SELECT * FROM coursedb.course_post where topic_id = ?";
+        List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor(),topicId);
+        return coursePosts;
+    }
 }

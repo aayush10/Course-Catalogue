@@ -25,4 +25,12 @@ public class FetchTopicsService {
         List<Topic> topicList = jdbcTemplate.query(query,new TopicExtractor(),category);
         return topicList;
     }
+    public int getTopic(String topicName){
+        String query = "SELECT * FROM coursedb.topic WHERE TopicName = ?";
+        List<Topic> topicList = jdbcTemplate.query(query,new TopicExtractor(),topicName);
+        if(topicList.size() == 0){
+            return -1;
+        }
+        return topicList.get(0).getId();
+    }
 }

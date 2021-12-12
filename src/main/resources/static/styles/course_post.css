@@ -1,0 +1,10 @@
+#comments-break {
+  width: 100%;
+  background-color: darkgray;
+}
+body {
+  background-color: red;
+}
+.container {
+  background-color: green;
+}
