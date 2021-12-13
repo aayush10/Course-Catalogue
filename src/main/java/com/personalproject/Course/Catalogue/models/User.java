@@ -73,11 +73,6 @@ public class User extends Person{
     public boolean deleteFromMyCourses(Course course){
         return userCart.deleteCourse(course);
     }
-    public boolean postComment(CoursePost post){
-        LocalDateTime currTime = LocalDateTime.now();
-        Comment comment = new Comment(this,currTime);
-        return post.addComment(comment);
-    }
     public boolean login(String userName,String password){
         return loginService.login(userName,password);
 

@@ -25,12 +25,13 @@ public class CoursePost {
     CourseLength duration;
     CourseType type;
     public CoursePost(){}
-    public CoursePost(int post_id, String name, int user_id, java.sql.Date date_submitted, String post_text, String course_category, String course_duration, String course_type, int topic_id,String course_level) {
+    public CoursePost(int post_id, String name, int user_id, java.sql.Date date_submitted, String post_text, String courseLink,String course_category, String course_duration, String course_type, int topic_id,String course_level) {
         this.post_id = post_id;
         this.postCourseName = name;
         this.submittedBy = new Person(user_id);
         this.timestamp = date_submitted.toLocalDate(); //todo
         this.about = post_text;
+        this.courseLink = courseLink;
         this.category = CourseCategory.valueOf(course_category);
         this.duration = CourseLength.valueOf(course_duration);
         this.type = CourseType.valueOf(course_type);

@@ -2,12 +2,8 @@ package com.personalproject.Course.Catalogue.resultsetextractors;
 
 import com.personalproject.Course.Catalogue.models.CoursePost;
 import com.personalproject.Course.Catalogue.models.User;
-import com.personalproject.Course.Catalogue.services.GetUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +24,7 @@ public class CoursePostsExtractor implements ResultSetExtractor<List<CoursePost>
                     userId,
                     rs.getDate("Date_submitted"),
                     rs.getString("Post_text"),
+                    rs.getString("Course_link"),
                     rs.getString("Course_category"),
                     rs.getString("Course_duration"),
                     rs.getString("Course_type"),
