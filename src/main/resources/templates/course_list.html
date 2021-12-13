@@ -17,7 +17,7 @@
                     <p>0 Downvotes</p>
                 </div>
                 <div class="card-body card-data course-title">
-                    <h5 class="card-title"><a th:href="@{{topicName}/{postId}(topicName=${topicName},postId=${coursePost.getPost_id()},coursePost=${coursePost})}" th:text="${coursePost.getPostCourseName()}"></a></h5>
+                    <h5 class="card-title"><a th:href="@{{topicName}/{postId}(topicName=${topicName},postId=${coursePost.getPost_id()})}" th:text="${coursePost.getPostCourseName()}"></a></h5>
                     <p class="card-text" th:text="${coursePost.getAbout()}"></p>
                     <div class="course-metadata">
                         <span>0 comments</span>

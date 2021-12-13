@@ -23,10 +23,6 @@ public class SubmitCourseService {
                 "topic_id,Course_level) VALUES(?,?,?,?,?,?,?,?,?,?)";
         LocalDate currDate = LocalDate.now();
         Date sqlDate = Date.valueOf(currDate);
-
-        System.out.println("TopicID" +coursePost.getTopicId());
-        System.out.println("TopicName = ?");
-        System.out.println(coursePost.getAbout());
         Object[] args = {
                 coursePost.getPostCourseName(),coursePost.getSubmittedBy().getId(),
                 sqlDate,coursePost.getAbout(),coursePost.getCourseLink(),

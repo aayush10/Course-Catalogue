@@ -18,7 +18,7 @@ public class PostCommentsExtractor implements ResultSetExtractor<List<Comment>> 
         while(rs.next()){
             String commentText = rs.getString("Comment_text");
             Date datePosted = rs.getDate("Date_posted");
-            int postedBy = rs.getInt("User_id");
+            String postedBy = rs.getString("username");
             postComments.add(new Comment(commentText,datePosted,postedBy));
         }
         return postComments;

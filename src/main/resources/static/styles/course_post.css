@@ -2,3 +2,10 @@
   width: 100%;
   background-color: rgb(228, 227, 227);
 }
+.btn {
+  background-color: rgb(86, 147, 228);
+}
+
+.username {
+  font-size: 0.75rem;
+}
