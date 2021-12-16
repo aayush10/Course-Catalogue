@@ -13,9 +13,11 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
+
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         System.out.println(dataSource);
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
@@ -28,6 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable();
+
         http.authorizeHttpRequests()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/user").hasAnyAuthority("ADMIN","USER")

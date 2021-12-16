@@ -108,7 +108,7 @@ public class CoursePost {
         this.courseLink = courseLink;
     }
 
-    public LocalDate getTimestamp() {
+        public LocalDate getTimestamp() {
         return timestamp;
     }
 

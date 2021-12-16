@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Comment {
@@ -15,11 +16,14 @@ public class Comment {
     LocalDate timestamp;
     long upVotes;
     long downVotes;
+    HashSet<String> upvotedByUsers;
+    HashSet<String> downVotedByUsers;
     String commentText;
     List<Comment> replies;
     //Constructor
     public Comment(){}
-    public Comment(String commentText, Date timestamp,String userName) {
+    public Comment(int commentId,String commentText, Date timestamp,String userName) {
+        this.commentId = commentId;
         this.commentText = commentText;
         this.timestamp = timestamp.toLocalDate();
         this.postedById = postedById;

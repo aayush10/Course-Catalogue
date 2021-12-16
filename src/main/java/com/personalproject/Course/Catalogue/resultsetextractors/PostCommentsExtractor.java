@@ -16,10 +16,11 @@ public class PostCommentsExtractor implements ResultSetExtractor<List<Comment>> 
     public List<Comment> extractData(ResultSet rs) throws SQLException, DataAccessException {
         List<Comment> postComments = new ArrayList<>();
         while(rs.next()){
+            int commentId = rs.getInt("Comment_id");
             String commentText = rs.getString("Comment_text");
             Date datePosted = rs.getDate("Date_posted");
             String postedBy = rs.getString("username");
-            postComments.add(new Comment(commentText,datePosted,postedBy));
+            postComments.add(new Comment(commentId,commentText,datePosted,postedBy));
         }
         return postComments;
     }

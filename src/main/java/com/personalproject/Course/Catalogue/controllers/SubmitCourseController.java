@@ -31,6 +31,7 @@ public class SubmitCourseController {
     @GetMapping("/submitCourse")
     public String submitCourse(Model model) throws ClassNotFoundException {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user);
         topicList = fetchTopicsService.fetchTopics();
         model.addAttribute("topicItem",new Topic());
         model.addAttribute("topicList",topicList);
