@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/course_list.css">
 </head>
 <body>
+    <div th:replace="navbar :: navbar_frag"></div>
     <div class="container">
         <h1 id="topic-name-courses" th:text="${topicName} +' Courses'"></h1>
         <div class="container list_course">

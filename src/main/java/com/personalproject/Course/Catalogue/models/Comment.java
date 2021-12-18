@@ -26,7 +26,6 @@ public class Comment {
         this.commentId = commentId;
         this.commentText = commentText;
         this.timestamp = timestamp.toLocalDate();
-        this.postedById = postedById;
         this.postedByUserName = userName;
     }
 
@@ -76,6 +75,22 @@ public class Comment {
 
     public void setDownVotes(long downVotes) {
         this.downVotes = downVotes;
+    }
+
+    public HashSet<String> getUpvotedByUsers() {
+        return upvotedByUsers;
+    }
+
+    public void setUpvotedByUsers(HashSet<String> upvotedByUsers) {
+        this.upvotedByUsers = upvotedByUsers;
+    }
+
+    public HashSet<String> getDownVotedByUsers() {
+        return downVotedByUsers;
+    }
+
+    public void setDownVotedByUsers(HashSet<String> downVotedByUsers) {
+        this.downVotedByUsers = downVotedByUsers;
     }
 
     public String getCommentText() {

@@ -5,6 +5,7 @@ import com.personalproject.Course.Catalogue.services.SubmitCourseService;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class CoursePost {
@@ -19,6 +20,8 @@ public class CoursePost {
     LocalDate timestamp;
     List<Comment> postComments;
     Person submittedBy;
+    HashSet<String> upvotedByUsers;
+    HashSet<String> downVotedByUsers;
     List<CourseFormat> formats;                  // a single course can have different formats
     CourseCategory category;
     CourseLevel level;
@@ -68,8 +71,22 @@ public class CoursePost {
         this.course = course;
     }
 
-    public String getPostCourseName() {
-        return postCourseName;
+    public String getPostCourseName() {return this.postCourseName;}
+
+    public HashSet<String> getUpvotedByUsers() {
+        return upvotedByUsers;
+    }
+
+    public void setUpvotedByUsers(HashSet<String> upvotedByUsers) {
+        this.upvotedByUsers = upvotedByUsers;
+    }
+
+    public HashSet<String> getDownVotedByUsers() {
+        return downVotedByUsers;
+    }
+
+    public void setDownVotedByUsers(HashSet<String> downVotedByUsers) {
+        this.downVotedByUsers = downVotedByUsers;
     }
 
     public void setPostCourseName(String postCourseName) {

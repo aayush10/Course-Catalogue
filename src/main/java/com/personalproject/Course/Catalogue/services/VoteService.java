@@ -17,13 +17,13 @@ public class VoteService {
 
             query = "INSERT INTO coursedb.votes(entity_id,username,entity_type,upvoted) " +
                     "VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE upvoted = " +
-                    "CASE WHEN upvoted = 1 THEN 0 ELSE 1 END";
+                    "CASE WHEN upvoted = 1 THEN 0 ELSE 1 END,downvoted=0";
 
         }
         else{
             query = "INSERT INTO coursedb.votes(entity_id,username,entity_type,downvoted)" +
                     "VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE downvoted = " +
-                    "CASE WHEN downvoted = 1 THEN 0 ELSE 1 END";
+                    "CASE WHEN downvoted = 1 THEN 0 ELSE 1 END,upvoted=0";
         }
         Object[] args = {
                 voteData.getEntityId(),voteData.getUsername(),voteData.getEntityType(),1

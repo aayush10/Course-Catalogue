@@ -35,6 +35,8 @@ span {
 }
 .comment-section {
   margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  margin-left: 1rem;
 }
 #post-header {
   color: rgb(106, 168, 170);
@@ -43,6 +45,18 @@ span {
   /* color: rgb(36, 216, 162); */
   -webkit-text-stroke: 0.2rem;
 }
+.btn-colored {
+  color: rgb(36, 216, 162);
+}
 .vote-btn:hover {
   cursor: pointer;
+}
+#login-alert {
+  text-align: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9999;
+  border-radius: 0px;
 }

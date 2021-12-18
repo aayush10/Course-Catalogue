@@ -32,12 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable();
 
+
         http.authorizeHttpRequests()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/user").hasAnyAuthority("ADMIN","USER")
                 .antMatchers("/submitCourse").authenticated()
                 .antMatchers(HttpMethod.POST,"/courses/*/*").authenticated()
                 .antMatchers("/").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                .loginPage("/login");
     }
 }
