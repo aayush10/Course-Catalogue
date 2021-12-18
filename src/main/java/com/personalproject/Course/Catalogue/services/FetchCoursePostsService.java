@@ -6,7 +6,6 @@ import com.personalproject.Course.Catalogue.resultsetextractors.CoursePostsExtra
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashSet;
 import java.util.List;

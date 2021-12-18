@@ -35,10 +35,8 @@ public class ViewCoursePostController {
         List<CourseFormat> courseFormats = fetchCourseFormatsService.getCourseFormats(postId);
         String userName = getUserDetailsService.getUserDetails(coursePost.getSubmittedBy().getId()).getUserName();
         Object secUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(secUser);
         String loggedInUserName;
-        if(secUser instanceof String){
-            System.out.println("notloggedin");
+        if(secUser instanceof String){              //user is not logged in
             loggedInUserName="";
         }
         else{

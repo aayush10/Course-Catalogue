@@ -5,6 +5,8 @@ import com.personalproject.Course.Catalogue.services.FetchCoursePostsService;
 import com.personalproject.Course.Catalogue.services.FetchTopicsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,19 @@ public class ViewCourseController {
     FetchTopicsService fetchTopicsService;
     @GetMapping("/courses/{courseName}")
     public String getCourseList(@PathVariable("courseName") String topicName, Model model){
+
+        Object secUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loggedInUserName;
+        if(secUser instanceof String){              //user is not logged in
+            loggedInUserName="";
+        }
+        else{
+            User user = (User)secUser;
+            loggedInUserName = user.getUsername();
+        }
+
         List<CoursePost> coursePosts;
         int topicId = fetchTopicsService.getTopic(topicName);
-        System.out.println("Topic Id "+topicId +" and topicName "+topicName);
         if(topicId == -1){
             //No such topicName
             throw new ResponseStatusException(
@@ -33,6 +45,7 @@ public class ViewCourseController {
         coursePosts = fetchCoursePostsService.fetchCoursePosts(topicId);
         model.addAttribute("coursePosts",coursePosts);
         model.addAttribute("topicName",topicName);
+        model.addAttribute("loggedinUsername",loggedInUserName);
         return "course_list";
     }
 

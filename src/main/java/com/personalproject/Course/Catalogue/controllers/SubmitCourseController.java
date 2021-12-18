@@ -1,7 +1,6 @@
 package com.personalproject.Course.Catalogue.controllers;
 
 import com.personalproject.Course.Catalogue.enums.*;
-import com.personalproject.Course.Catalogue.models.Course;
 import com.personalproject.Course.Catalogue.models.CoursePost;
 import com.personalproject.Course.Catalogue.models.Topic;
 import com.personalproject.Course.Catalogue.services.FetchTopicsService;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -33,9 +31,11 @@ public class SubmitCourseController {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(user);
         topicList = fetchTopicsService.fetchTopics();
+
         model.addAttribute("topicItem",new Topic());
         model.addAttribute("topicList",topicList);
         model.addAttribute("coursePost",new CoursePost());
+        model.addAttribute("loggedinUsername",user.getUsername());
         //passing enums
 
         model.addAttribute("CourseLength",CourseLength.values());
@@ -48,7 +48,6 @@ public class SubmitCourseController {
     @PostMapping("/submitCourse")
     public String postCourse(@ModelAttribute CoursePost coursePostModel, Model model){
         int topicId = coursePostModel.getTopicId();
-
         User secUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         com.personalproject.Course.Catalogue.models.User user = getUserDetailsService.getUserDetails(secUser.getUsername());
         coursePostModel.setSubmittedBy(user);

@@ -12,7 +12,6 @@ public class HomeController {
     @GetMapping("/home")
     public String home(){
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        System.out.println(authorities);
         return "Welcome to home";
     }
     @GetMapping("/user")
