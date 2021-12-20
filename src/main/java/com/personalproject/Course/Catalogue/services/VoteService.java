@@ -10,7 +10,7 @@ public class VoteService {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public void vote(Vote voteData){
+    public void     vote(Vote voteData){
         String action = voteData.getAction();
         String query,deleteQuery;
         if(action.equals("upvote")){

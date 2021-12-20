@@ -27,6 +27,7 @@ public class CoursePost {
     CourseLevel level;
     CourseLength duration;
     CourseType type;
+
     public CoursePost(){}
     public CoursePost(int post_id, String name, int user_id, java.sql.Date date_submitted, String post_text, String courseLink,String course_category, String course_duration, String course_type, int topic_id,String course_level) {
         this.post_id = post_id;
@@ -189,5 +190,13 @@ public class CoursePost {
         this.type = type;
     }
 
+    public String getFormatString(){
+        String format="";
+        if(this.formats.size()==0){
+            return format;
+        }
+        int len = this.formats.toString().length();
+        return this.formats.toString().substring(1,len-1);
+    }
 
 }

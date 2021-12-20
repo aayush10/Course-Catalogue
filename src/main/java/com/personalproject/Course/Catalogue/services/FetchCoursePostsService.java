@@ -1,5 +1,7 @@
 package com.personalproject.Course.Catalogue.services;
 
+import com.personalproject.Course.Catalogue.enums.CourseFormat;
+import com.personalproject.Course.Catalogue.models.Comment;
 import com.personalproject.Course.Catalogue.models.CoursePost;
 import com.personalproject.Course.Catalogue.models.User;
 import com.personalproject.Course.Catalogue.resultsetextractors.CoursePostsExtractor;
@@ -17,29 +19,42 @@ public class FetchCoursePostsService {
     GetUserDetailsService getUserDetailsService;
     @Autowired
     FetchVotesService fetchVotesService;
+    @Autowired
+    FetchPostCommentsService fetchPostCommentsService;
+    @Autowired
+    FetchCourseFormatsService fetchCourseFormatsService;
     public List<CoursePost> fetchCoursePosts(){
         String query = "SELECT * FROM coursedb.course_post";
         List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor());
+        setPostDetails(coursePosts);
+        return coursePosts;
+    }
+    public List<CoursePost> fetchCoursePosts(int topicId){
+        String query = "SELECT * FROM coursedb.course_post where topic_id = ?";
+        List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor(),topicId);
+        setPostDetails(coursePosts);
+        return coursePosts;
+    }
+
+    public void setPostDetails(List<CoursePost> coursePosts){
         if(coursePosts.size() == 0){
-            return coursePosts;
+            return;
         }
         for(CoursePost cp:coursePosts){
+            int postId = cp.getPost_id();
             long userId = cp.getSubmittedBy().getId();
             User user =getUserDetailsService.getUserDetails(userId);
+            List<Comment> comments = fetchPostCommentsService.getPostComments(postId);
+            List<CourseFormat> courseFormats = fetchCourseFormatsService.getCourseFormats(postId);
             cp.setSubmittedBy(user);
-            int postId = cp.getPost_id();
             HashSet<String> upvotedBy = fetchVotesService.getUpvotedBy(postId,"crspost");
             HashSet<String> downvotedBy = fetchVotesService.getDownVotedBy(postId,"crspost");
             cp.setUpvotedByUsers(upvotedBy);
             cp.setDownVotedByUsers(downvotedBy);
             cp.setUpVotes(upvotedBy.size());
             cp.setDownVotes(downvotedBy.size());
+            cp.setPostComments(comments);
+            cp.setFormats(courseFormats);
         }
-        return coursePosts;
-    }
-    public List<CoursePost> fetchCoursePosts(int topicId){
-        String query = "SELECT * FROM coursedb.course_post where topic_id = ?";
-        List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor(),topicId);
-        return coursePosts;
     }
 }

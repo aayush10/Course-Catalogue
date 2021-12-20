@@ -12,10 +12,11 @@
   margin-left: 96%;
 }
 .course-metadata {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   padding: 0.5rem;
   background-color: rgb(158, 158, 158);
   color: rgb(255, 255, 255);
+  border-radius: 0.3rem;
 }
 .username {
   font-size: 0.75rem;
@@ -45,6 +46,13 @@ span {
   /* color: rgb(36, 216, 162); */
   -webkit-text-stroke: 0.2rem;
 }
+.delete-btn {
+  margin-left: 20rem;
+  display: none;
+}
+.delete-btn:hover {
+  cursor: pointer;
+}
 .btn-colored {
   color: rgb(36, 216, 162);
 }
@@ -59,4 +67,13 @@ span {
   width: 100%;
   z-index: 9999;
   border-radius: 0px;
+}
+.comment:hover .delete-btn {
+  display: inline;
+}
+.comment-date {
+  font-size: 0.65rem;
+  color: rgb(144, 184, 184);
+  padding-left: 2.6rem;
+  display: absolute;
 }

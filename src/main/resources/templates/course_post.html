@@ -14,6 +14,27 @@
 
 </head>
 <body>
+
+    <!-- This is a delete popup/modal -->
+    <div class="modal fade" id="deletecomment-popup" tabindex="-1" aria-labelledby="deletecomment-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deletecomment-label">Delete Comment</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p> Are you sure you want to delete this comment?</p>
+            </div>
+            <div class="modal-footer">    
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger btn-confirm-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Ending of popup -->
+
     <div th:replace="navbar :: navbar_frag"></div>
     <div class="alert alert-warning" id="login-alert" role="alert">
         Please <a th:href="@{login}" class="alert-link">login/signup</a> to upvote/downvote.
@@ -46,6 +67,7 @@
                 <span th:text="${coursePost.getTimestamp()}" class="date"/>
 
                 <!--this is course metadata-->
+                <span class="course-metadata" th:text = "${coursePost.getCategory()}" title="Course Category"></span>
                 <span class="course-metadata" th:text = "${coursePost.getLevel()}" title="Course Level"></span>
                 <span class="course-metadata" th:text = "${coursePost.getDuration()}" title="Course Duration"></span>
                 <span class="course-metadata" th:text = "${coursePost.getType()}" title="Course Type"></span>
@@ -93,8 +115,19 @@
                         </span>
                     </div>
                     <div class="comment col">
-                        <p ><a href="#" th:text="${comment.getPostedByUserName()}" class="username"></a> </p>
+                        <div th:if="${comment.getPostedByUserName().equals(loggedinUsername)}">
+                            <a href="#" th:text="${comment.getPostedByUserName()}" class="username"></a>
+                            <span class="comment-date"th:text="${comment.getTimestamp()}"></span>
+                            <i th:id="${comment.getCommentId()}" class="bi bi-trash delete-btn "data-bs-toggle="modal" data-bs-target="#deletecomment-popup"></i>
+                        </div>
+                        <div th:unless="${comment.getPostedByUserName().equals(loggedinUsername)}">
+                            <a href="#" th:text="${comment.getPostedByUserName()}" class="username"></a>
+                            <span class="comment-date"th:text="${comment.getTimestamp()}"></span>
+                        </div>
+
+
                         <p class="comment-text" th:text="${comment.getCommentText()}"></p>
+                        
                     </div>
                 </div>
                 
@@ -109,9 +142,33 @@
         $( document ).ready(function() {
             $('#login-alert').hide();
 
-
+            ajaxDelete();
             ajaxPost(); 
 	    });
+        function ajaxDelete(){
+            $(".delete-btn").click(function(){
+                var commentId = this.id;
+                
+                var deleteData = {
+                    commentId: Number(commentId)
+                    // coursePostId:[[${coursePost.getPost_id()}]] 
+                }
+                $(".btn-confirm-delete").click(function(){
+                    console.log(commentId);
+                    $.ajax({
+                        method:"DELETE",
+                        contentType : 'application/json; charset=utf-8',
+                        url:window.location.href+"/deletecomment",
+                        data: commentId,                //NOte no json stringify
+                        dataType:'json'
+                    });
+                    window.location.reload();
+                }); 
+            });
+        }
+
+
+
         function ajaxPost(){
             $(".vote-btn").click(function(){
 

@@ -18,8 +18,19 @@ a {
   width: 2rem;
 }
 .course-title {
-  width: 33rem;
+  width: 50rem;
 }
 .course-metadata {
   margin-top: 2rem;
+}
+.course-metadata-item {
+  font-size: 0.75rem;
+  padding: 0.2rem;
+  background-color: rgb(158, 158, 158);
+  color: rgb(255, 255, 255);
+  border-radius: 2px;
+  border-color: black;
+}
+#sbusername {
+  color: cornsilk;
 }

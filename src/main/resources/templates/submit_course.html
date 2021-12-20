@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Submit Course</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../styles/submit_course.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -14,7 +15,7 @@
     <div class="container">
         <h1>Submit a new Course</h1>
        <p>We would recommend you to check if the course is already added. If not please go ahead!</p>
-       <form  method="POST" th:action="@{/submitCourse}" th:object="${coursePost}">
+       <form class="needs-validation" method="POST" th:action="@{/submitCourse}" th:object="${coursePost}" novalidate>
            <div class="mb-3">
                <select class="form-select" th:field="*{topicId}">
                    <option th:each="topicItem:${topicList}"
@@ -24,31 +25,45 @@
            </div>
 
         <div class="mb-3">
-          <input type="text"  class="form-control" id="courseName" aria-describedby="courseNotice" placeholder="Course Name" th:field="*{postCourseName}">
+          <input type="text"  class="form-control" id="courseName" aria-describedby="courseNotice" placeholder="Course Name" th:field="*{postCourseName}" required>
           <div id="courseNotice" class="form-text">Try giving the exact name as in the course</div>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
         </div>
-
+        
         <div class="mb-3">
           <label for="about" class="form-label">Course Description:</label>
-          <textarea class="form-control" id="about" rows="3" th:field="*{about}"></textarea>
+          <textarea class="form-control" id="about" rows="3" th:field="*{about}" placeholder="What did you like about the course?" required></textarea>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
         </div>
-
+        
         <div class="mb-3">
-          <input type="text" th:field="*{courseLink}" class="form-control" id="courseLink" placeholder="Course Link">
+          <input type="url" th:field="*{courseLink}" class="form-control" id="courseLink" placeholder="Course Link*" required>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
         </div>
+        
         <div class="mb-3">
-          <select class="form-select" th:field="*{duration}">
-            <option value="invalid" selected disabled>Course Duration</option>
-            <option th:value="${CourseLength[0]}">1-2 months</option>
-            <option th:value="${CourseLength[1]}">2-4 months</option>
-            <option th:value="${CourseLength[2]}">4-8 months</option>
-            <option th:value="${CourseLength[3]}">8-12 months</option>
-            <option th:value="${CourseLength[4]}">1-2 years</option>
+          <select class="form-select" th:field="*{duration}" required>
+            <option value = "" hidden>Course Duration</option>
+            <option th:value="${CourseLength[0].name()}">1-2 months</option>
+            <option th:value="${CourseLength[1].name()}">2-4 months</option>
+            <option th:value="${CourseLength[2].name()}">4-8 months</option>
+            <option th:value="${CourseLength[3].name()}">8-12 months</option>
+            <option th:value="${CourseLength[4].name()}">1-2 years</option>
           </select>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
         </div>
+        
         <div class="mb-3" >
-          <select class="form-select" th:field="*{category}">
-            <option value="invalid" selected disabled>Course type</option>
+          <select class="form-select" th:field="*{category}" required>
+            <option value="" hidden>Course type</option>
             <option th:value="${CourseCategory[0]}">Language</option>
             <option th:value="${CourseCategory[1]}">Library</option>
             <option th:value="${CourseCategory[2]}">Framework</option>
@@ -58,7 +73,7 @@
             <option th:value="${CourseCategory[6]}">Tool</option>
           </select>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 checkbox-group required">
           <label for="courseFormat" class="form-label">Course Format(Select all that apply)</label>
           <div class= "form-check form-check-inline">
               <input class = "form-check-input" th:value="${CourseFormat[0]}" type="checkbox"  id="text" autocomplete="off"  name = "course_format" th:field="*{formats}" >
@@ -76,33 +91,65 @@
               <input class = "form-check-input" th:value="${CourseFormat[3]}" type="checkbox"  id="certificated" autocomplete="off" name = "course_format" th:field="*{formats}">
               <label class = "form-check-label" for="certificated">Certificated</label>
             </div>
+            <div class="invalid-feedback">
+              Please select a valid state.
+            </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 btn-group" role = "group">
           <label for="courseLevel" class="form-label">Set Course Level</label>
-          <div class= "btn-group" role="group">
-            <input th:value="${CourseLevel[0]}" type="radio" name = "course_level"class = "btn-check" id="beginner" autocomplete="off" checked th:field="*{level}">
+          <!-- <div class= "btn-group" role="group"> -->
+            <input th:value="${CourseLevel[0]}" type="radio" name = "course_level"class = "btn-check" id="beginner" autocomplete="off" checked th:field="*{level}" required>
             <label class="btn btn-outline-info" for="beginner">Beginner</label>
-            <input th:value="${CourseLevel[1]}" type="radio" name = "course_level"class = "btn-check" id="intermediate" autocomplete="off" th:field="*{level}">
+            <input th:value="${CourseLevel[1]}" type="radio" name = "course_level"class = "btn-check" id="intermediate" autocomplete="off" th:field="*{level}" required>
             <label class="btn btn-outline-info" for="intermediate">Intermediate</label>
-            <input th:value="${CourseLevel[2]}" type="radio" name = "course_level"class = "btn-check" id="expert" autocomplete="off" th:field="*{level}">
+            <input th:value="${CourseLevel[2]}" type="radio" name = "course_level"class = "btn-check" id="expert" autocomplete="off" th:field="*{level}" required>
             <label class="btn btn-outline-info" for="expert">Expert</label>
+
+          <!-- </div> -->
+          <div class="invalid-feedback">
+            Please select a valid state.
           </div>
-        </div><div class="mb-3">
+        </div>
+        <br>
+        <div class="mb-3 btn-group" role="group">
            <label for="courseType" class="form-label">Set Course Type</label>
-           <div class= "btn-group" role="group">
-               <input th:value="${CourseType[0]}" type="radio" name = "course_type"class = "btn-check" id="free" autocomplete="off" checked th:field="*{type}">
+           <!-- <div class= "btn-group" role="group"> -->
+               <input th:value="${CourseType[0]}" type="radio" name = "course_type"class = "btn-check" id="free" autocomplete="off" checked th:field="*{type}" required>
                <label class="btn btn-outline-info" for="free">Free</label>
-               <input th:value="${CourseType[1]}" type="radio" name = "course_type"class = "btn-check" id="paid" autocomplete="off" th:field="*{type}">
+               <input th:value="${CourseType[1]}" type="radio" name = "course_type"class = "btn-check" id="paid" autocomplete="off" th:field="*{type}" required>
                <label class="btn btn-outline-info" for="paid">Paid</label>
-               <input th:value="${CourseType[2]}" type="radio" name = "course_type"class = "btn-check" id="finan_aid" autocomplete="off" th:field="*{type}">
+               <input th:value="${CourseType[2]}" type="radio" name = "course_type"class = "btn-check" id="finan_aid" autocomplete="off" th:field="*{type}" required>
                <label class="btn btn-outline-info" for="finan_aid">Financial Aid available</label>
-           </div>
+           <!-- </div> -->
+           <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
        </div>
+       <br>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <script>
+      var form = $("form");
+      if($('div.checkbox-group.required :checkbox:checked').length > 0){
+        $(".checkbox-group > .invalid-feedback").hide();
+      }
+      form[0].addEventListener("submit",function(event){
+        
+        if($('div.checkbox-group.required :checkbox:checked').length <= 0){ // no item is checked
+          event.preventDefault();
+          $(".checkbox-group > .invalid-feedback").show();
+          console.log("error show");
+        }
+        if(!form[0].checkValidity()){
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form[0].classList.add("was-validated");
+      },false);
+      
+    </script>
 </body>
 </html>

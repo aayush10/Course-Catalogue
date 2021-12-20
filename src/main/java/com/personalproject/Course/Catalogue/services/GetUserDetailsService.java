@@ -13,6 +13,7 @@ public class GetUserDetailsService {
     public User getUserDetails(long id){
         String query = "SELECT * FROM coursedb.user WHERE userId = ?";
         User user = jdbcTemplate.query(query,new UserExtractor(),id);
+        System.out.println("submittedby "+user.getUserName());
         return user;
     }
     public User getUserDetails(String username){
