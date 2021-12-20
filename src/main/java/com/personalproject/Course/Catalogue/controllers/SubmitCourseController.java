@@ -51,7 +51,19 @@ public class SubmitCourseController {
         User secUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         com.personalproject.Course.Catalogue.models.User user = getUserDetailsService.getUserDetails(secUser.getUsername());
         coursePostModel.setSubmittedBy(user);
+        System.out.println(coursePostModel.getLevel());
         submitCourseService.submitCourse(coursePostModel);
-        return "redirect:/courses";
+        int topicIdSubmitted = coursePostModel.getTopicId();
+
+        return "redirect:/courses/"+getTopicName(topicIdSubmitted);
+    }
+    public String getTopicName(int topicId){
+        String topicName= "";
+        for(Topic topic : topicList){
+            if(topic.getId() == topicId){
+                return topic.getCourseName();
+            }
+        }
+        return topicName;
     }
 }

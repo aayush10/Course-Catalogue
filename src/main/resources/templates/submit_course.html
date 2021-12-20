@@ -28,7 +28,7 @@
           <input type="text"  class="form-control" id="courseName" aria-describedby="courseNotice" placeholder="Course Name" th:field="*{postCourseName}" required>
           <div id="courseNotice" class="form-text">Try giving the exact name as in the course</div>
           <div class="invalid-feedback">
-            Please select a valid state.
+            Please select a Course Name.
           </div>
         </div>
         
@@ -36,14 +36,14 @@
           <label for="about" class="form-label">Course Description:</label>
           <textarea class="form-control" id="about" rows="3" th:field="*{about}" placeholder="What did you like about the course?" required></textarea>
           <div class="invalid-feedback">
-            Please select a valid state.
+            Please enter a course description.
           </div>
         </div>
         
         <div class="mb-3">
           <input type="url" th:field="*{courseLink}" class="form-control" id="courseLink" placeholder="Course Link*" required>
           <div class="invalid-feedback">
-            Please select a valid state.
+            Please enter a url.
           </div>
         </div>
         
@@ -57,7 +57,7 @@
             <option th:value="${CourseLength[4].name()}">1-2 years</option>
           </select>
           <div class="invalid-feedback">
-            Please select a valid state.
+            Please select a course duration.
           </div>
         </div>
         
@@ -72,6 +72,9 @@
             <option th:value="${CourseCategory[5]}">Theory</option>
             <option th:value="${CourseCategory[6]}">Tool</option>
           </select>
+          <div class="invalid-feedback">
+            Please select course category.
+          </div>
         </div>
         <div class="mb-3 checkbox-group required">
           <label for="courseFormat" class="form-label">Course Format(Select all that apply)</label>
@@ -92,7 +95,7 @@
               <label class = "form-check-label" for="certificated">Certificated</label>
             </div>
             <div class="invalid-feedback">
-              Please select a valid state.
+              Please select at least one course format.
             </div>
         </div>
         <div class="mb-3 btn-group" role = "group">
@@ -107,7 +110,7 @@
 
           <!-- </div> -->
           <div class="invalid-feedback">
-            Please select a valid state.
+            Please select course level.
           </div>
         </div>
         <br>
@@ -122,7 +125,7 @@
                <label class="btn btn-outline-info" for="finan_aid">Financial Aid available</label>
            <!-- </div> -->
            <div class="invalid-feedback">
-            Please select a valid state.
+            Please select course type.
           </div>
        </div>
        <br>

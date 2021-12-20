@@ -23,12 +23,13 @@ public class SubmitCourseService {
                 "topic_id,Course_level) VALUES(?,?,?,?,?,?,?,?,?,?)";
         LocalDate currDate = LocalDate.now();
         Date sqlDate = Date.valueOf(currDate);
+        System.out.println(coursePost.getLevel());
         Object[] args = {
                 coursePost.getPostCourseName(),coursePost.getSubmittedBy().getId(),
                 sqlDate,coursePost.getAbout(),coursePost.getCourseLink(),
-                coursePost.getCategory().toString(),coursePost.getDuration().toString(),
+                coursePost.getCategory().toString(),coursePost.getDuration().name(),
                 coursePost.getType().toString(),
-                coursePost.getTopicId(),coursePost.getLevel()
+                coursePost.getTopicId(),coursePost.getLevel().toString()
                 };
         jdbcTemplate.update(query,args);
 
