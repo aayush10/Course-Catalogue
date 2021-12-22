@@ -40,7 +40,7 @@
         Please <a th:href="@{login}" class="alert-link">login/signup</a> to upvote/downvote.
       </div>
     <div class="container post-title" >
-        <h2> <a id="post-header" th:text="${coursePost.getPostCourseName()}" href="#"></a></h2>
+        <h2> <a id="post-header" th:text="${coursePost.getPostCourseName()}" th:href="${coursePost.getCourseLink()}"></a></h2>
         <hr>
         
         <div class ="row">

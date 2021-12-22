@@ -12,7 +12,11 @@ public class UserExtractor implements ResultSetExtractor<User> {
     @Override
     public User extractData(ResultSet rs) throws SQLException, DataAccessException {
         User resultUser = new User();
-        rs.next();
+        if(!rs.next()){
+            System.out.println("No such user found");
+            return null;
+
+        }
         resultUser.setRole(rs.getString("role"));
         resultUser.setUserName(rs.getString("userName"));
         resultUser.setId(Long.parseLong(rs.getString("userId")));

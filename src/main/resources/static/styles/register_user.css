@@ -1,3 +1,6 @@
 #passwordHelpInline {
   margin-left: 5.3rem;
 }
+.user-exists {
+  color: rgb(255, 95, 95);
+}

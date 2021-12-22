@@ -2,7 +2,8 @@ package com.personalproject.Course.Catalogue.models;
 
 public class Person {
     long id;
-    String name;
+    String firstName;
+    String lastName;
     String email;
     String userName;
     String password;
@@ -35,12 +36,20 @@ public class Person {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUserName() {
@@ -63,7 +72,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + firstName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';

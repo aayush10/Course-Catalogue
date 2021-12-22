@@ -119,7 +119,7 @@ public class CoursePost {
     }
 
     public String getCourseLink() {
-        return courseLink;
+        return this.courseLink;
     }
 
     public void setCourseLink(String courseLink) {
