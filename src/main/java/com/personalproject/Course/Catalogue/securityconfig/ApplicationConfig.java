@@ -12,9 +12,13 @@ public class ApplicationConfig {
     public DataSource dataSource(){
         System.out.println("dataSource called");
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setUrl("jdbc:mysql://127.0.0.1:3306/?user=root/coursedb");
-        driverManagerDataSource.setUsername("root");
-        driverManagerDataSource.setPassword("Hellomotto24*");
+        driverManagerDataSource.setUrl("jdbc:mysql://mysqlinstanceaws.cv7yvcrnwwdv.us-east-2.rds.amazonaws.com:3306");
+        driverManagerDataSource.setUsername("ad_aayush06");
+        driverManagerDataSource.setPassword("aayush10rooney");
+//        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306");
+//        driverManagerDataSource.setUsername("root");
+//        driverManagerDataSource.setPassword("Hellomotto24*");
+
         driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return driverManagerDataSource;
     }

@@ -1,5 +1,6 @@
 package com.personalproject.Course.Catalogue.services;
 
+import com.personalproject.Course.Catalogue.comparators.CoursePostsComparator;
 import com.personalproject.Course.Catalogue.enums.CourseFormat;
 import com.personalproject.Course.Catalogue.models.Comment;
 import com.personalproject.Course.Catalogue.models.CoursePost;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 @Component
@@ -33,6 +35,7 @@ public class FetchCoursePostsService {
         String query = "SELECT * FROM coursedb.course_post where topic_id = ?";
         List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor(),topicId);
         setPostDetails(coursePosts);
+        Collections.sort(coursePosts,new CoursePostsComparator());
         return coursePosts;
     }
 

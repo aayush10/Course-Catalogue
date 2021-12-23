@@ -37,8 +37,13 @@
 
     <div th:replace="navbar :: navbar_frag"></div>
     <div class="alert alert-warning" id="login-alert" role="alert">
-        Please <a th:href="@{login}" class="alert-link">login/signup</a> to upvote/downvote.
-      </div>
+        Please <a th:href="@{/login}" class="alert-link">login/signup</a> to upvote/downvote.
+    </div>
+    <br>
+    <div class="container">
+        <a th:href="@{/courses/{cn}(cn=${courseName})}"><i class="bi bi-arrow-left" ></i> <span th:text="'Back to '+ ${courseName} +' courses'" ></span></a>
+    </div>
+    
     <div class="container post-title" >
         <h2> <a id="post-header" th:text="${coursePost.getPostCourseName()}" th:href="${coursePost.getCourseLink()}"></a></h2>
         <hr>

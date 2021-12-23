@@ -11,9 +11,9 @@
     <bean id = "visitor" class="com.personalproject.Course.Catalogue.models.Visitor"/>
     <bean id = "person" class="com.personalproject.Course.Catalogue.models.Person"/>
     <bean id = "dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <constructor-arg name="url" value="jdbc:mysql://127.0.0.1:3306/?user=root"/>
-        <constructor-arg name="username" value="root"/>
-        <constructor-arg name="password" value="Hellomotto24*"/>
+        <constructor-arg name="url" value="jdbc:mysql://mysqlinstanceaws.cv7yvcrnwwdv.us-east-2.rds.amazonaws.com:3306/?user=root"/>
+        <constructor-arg name="username" value="ad_aayush06"/>
+        <constructor-arg name="password" value="aayush10rooney"/>
     </bean>
     <bean id = "jdbcConn" class="com.personalproject.Course.Catalogue.dbConn.JDBCConn"/>
     <bean id = "jdbcTemp" class = "org.springframework.jdbc.core.JdbcTemplate">

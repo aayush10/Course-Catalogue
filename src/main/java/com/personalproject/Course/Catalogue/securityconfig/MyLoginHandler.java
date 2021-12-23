@@ -13,7 +13,14 @@ public class MyLoginHandler extends SavedRequestAwareAuthenticationSuccessHandle
     public MyLoginHandler(String defaultTargetUrl){
         setDefaultTargetUrl(defaultTargetUrl);
     }
-
+//    public String getHref(String referrer){
+//        int N = referrer.length();
+//        StringBuilder sb = new StringBuilder();
+//        while(referrer.charAt(--N)!='/'){
+//            sb.append(referrer.charAt(N));
+//        }
+//        return new String(sb.reverse());
+//    }
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
 
@@ -22,11 +29,17 @@ public class MyLoginHandler extends SavedRequestAwareAuthenticationSuccessHandle
         if (session != null) {
             System.out.println("session not null");
             String redirectUrl = (String) session.getAttribute("url_prior_login");
+//            System.out.println(getHref(redirectUrl));
+//            if(getHref(redirectUrl).equals("register")){
+//                session.removeAttribute("url_prior_login");
+//                System.out.println("Came from Register");
+//            }
             System.out.println(redirectUrl);
-            if (redirectUrl != null) {
+            if (/*!getHref(redirectUrl).equals("register") && */redirectUrl != null) {
                 // clean this attribute from session
                 session.removeAttribute("url_prior_login");
                 // redirect
+                System.out.println("Did i come?>>?>??>?>?>");
                 getRedirectStrategy().sendRedirect(request, response, redirectUrl);
                 System.out.println("Redirecting...");
             }
