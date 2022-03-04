@@ -16,7 +16,7 @@ public class FetchCourseFormatsService {
     JdbcTemplate jdbcTemplate;
 
     public List<CourseFormat> getCourseFormats(int postId){
-        String query = "SELECT * FROM coursedb.course_format WHERE post_id = ?";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.course_format WHERE post_id = ?";
         return jdbcTemplate.query(query,new PostFormatsExtractor(),postId);
     }
 }

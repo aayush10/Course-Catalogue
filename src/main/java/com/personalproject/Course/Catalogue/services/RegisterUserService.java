@@ -17,10 +17,10 @@ public class RegisterUserService {
             System.out.println("User already exists");
             return false;
         }
-        String insertUser = "INSERT INTO coursedb.user(userName,firstName,lastName,password,email,enabled,role)" +
+        String insertUser = "INSERT INTO heroku_2a781f4548f803a.user(userName,firstName,lastName,password,email,enabled,role)" +
                 "VALUES(?,?,?,?,?,?,?)";
 
-        String insertAuth = "INSERT INTO coursedb.authority VALUES(?,?)";
+        String insertAuth = "INSERT INTO heroku_2a781f4548f803a.authority VALUES(?,?)";
 
         Object[] insertUserArgs = {
                 user.getUserName(),user.getFirstName(),user.getLastName(),user.getPassword(),

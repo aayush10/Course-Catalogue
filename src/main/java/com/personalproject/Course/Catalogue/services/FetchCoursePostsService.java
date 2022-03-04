@@ -26,13 +26,13 @@ public class FetchCoursePostsService {
     @Autowired
     FetchCourseFormatsService fetchCourseFormatsService;
     public List<CoursePost> fetchCoursePosts(){
-        String query = "SELECT * FROM coursedb.course_post";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.course_post";
         List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor());
         setPostDetails(coursePosts);
         return coursePosts;
     }
     public List<CoursePost> fetchCoursePosts(int topicId){
-        String query = "SELECT * FROM coursedb.course_post where topic_id = ?";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.course_post where topic_id = ?";
         List<CoursePost> coursePosts = jdbcTemplate.query(query,new CoursePostsExtractor(),topicId);
         setPostDetails(coursePosts);
         Collections.sort(coursePosts,new CoursePostsComparator());

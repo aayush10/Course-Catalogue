@@ -15,7 +15,7 @@ public class FetchPostItemService {
     @Autowired
     FetchVotesService fetchVotesService;
     public CoursePost getPostItem(int postId){
-        String query = "SELECT * FROM coursedb.course_post WHERE post_id = ?";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.course_post WHERE post_id = ?";
         CoursePost coursePost = jdbcTemplate.query(query,new PostItemExtractor(),postId);
         HashSet<String> upvotedBy = fetchVotesService.getUpvotedBy(postId,"crspost");
         HashSet<String> downVotedBy = fetchVotesService.getDownVotedBy(postId,"crspost");

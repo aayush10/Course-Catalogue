@@ -17,7 +17,7 @@ public class FetchPostCommentsService {
     @Autowired
     FetchVotesService fetchVotesService;
     public List<Comment> getPostComments(int postId){
-        String query = "SELECT * FROM coursedb.comment WHERE post_id = ?";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.comment WHERE post_id = ?";
         List<Comment> postComments = jdbcTemplate.query(query,new PostCommentsExtractor(),postId);
         if(postComments.size() == 0){
             return postComments;

@@ -11,13 +11,13 @@ public class GetUserDetailsService {
     @Autowired
     JdbcTemplate jdbcTemplate;
     public User getUserDetails(long id){
-        String query = "SELECT * FROM coursedb.user WHERE userId = ?";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.user WHERE userId = ?";
         User user = jdbcTemplate.query(query,new UserExtractor(),id);
         System.out.println("submittedby "+user.getUserName());
         return user;
     }
     public User getUserDetails(String username){
-        String query = "SELECT * FROM coursedb.user WHERE userName = ?";
+        String query = "SELECT * FROM heroku_2a781f4548f803a.user WHERE userName = ?";
         User user = jdbcTemplate.query(query,new UserExtractor(),username);
         return user;
     }

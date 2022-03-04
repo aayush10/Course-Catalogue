@@ -10,7 +10,7 @@ public class FetchPrevPostIdService {
     @Autowired
     JdbcTemplate jdbcTemplate;
     public Integer getPrevPostId(){
-        String sql = "SELECT MAX(post_id) FROM coursedb.course_post";
+        String sql = "SELECT MAX(post_id) FROM heroku_2a781f4548f803a.course_post";
         Integer prevPostId = jdbcTemplate.query(sql, new PrevPostCourseIdExtractor());
         return prevPostId;
     }

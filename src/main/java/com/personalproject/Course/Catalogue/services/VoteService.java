@@ -15,13 +15,13 @@ public class VoteService {
         String query,deleteQuery;
         if(action.equals("upvote")){
 
-            query = "INSERT INTO coursedb.votes(entity_id,username,entity_type,upvoted) " +
+            query = "INSERT INTO heroku_2a781f4548f803a.votes(entity_id,username,entity_type,upvoted) " +
                     "VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE upvoted = " +
                     "CASE WHEN upvoted = 1 THEN 0 ELSE 1 END,downvoted=0";
 
         }
         else{
-            query = "INSERT INTO coursedb.votes(entity_id,username,entity_type,downvoted)" +
+            query = "INSERT INTO heroku_2a781f4548f803a.votes(entity_id,username,entity_type,downvoted)" +
                     "VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE downvoted = " +
                     "CASE WHEN downvoted = 1 THEN 0 ELSE 1 END,upvoted=0";
         }

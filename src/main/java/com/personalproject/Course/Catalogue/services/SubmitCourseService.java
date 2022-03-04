@@ -18,7 +18,7 @@ public class SubmitCourseService {
     @Autowired
     FetchPrevPostIdService fetchPrevPostIdService;
     public boolean submitCourse(CoursePost coursePost){
-        String query = "INSERT INTO coursedb.course_post (Name,User_id,Date_submitted,Post_text," +
+        String query = "INSERT INTO heroku_2a781f4548f803a.course_post (Name,User_id,Date_submitted,Post_text," +
                 "Course_link,Course_category,Course_duration,Course_type,"+
                 "topic_id,Course_level) VALUES(?,?,?,?,?,?,?,?,?,?)";
         LocalDate currDate = LocalDate.now();
@@ -33,7 +33,7 @@ public class SubmitCourseService {
                 };
         jdbcTemplate.update(query,args);
 
-        query = "INSERT INTO coursedb.course_format VALUES(?,?)";
+        query = "INSERT INTO heroku_2a781f4548f803a.course_format VALUES(?,?)";
         int prevPostId = fetchPrevPostIdService.getPrevPostId();
         List<CourseFormat> formats = coursePost.getFormats();
         for(CourseFormat format : formats){
