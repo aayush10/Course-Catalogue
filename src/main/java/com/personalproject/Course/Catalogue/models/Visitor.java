@@ -31,7 +31,7 @@ public class Visitor extends Person{
         return res;
     }
     public boolean signUp(String firstName,String lastName,String email,String userName,String password) {
-        String query = "insert into heroku_2a781f4548f803a.user (userName,firstName,lastName,password,email) values(?,?,?,?,?)";
+        String query = "insert into `heroku_2a781f4548f803a.user` (userName,firstName,lastName,password,email) values(?,?,?,?,?)";
         Object[] args = {userName,firstName,lastName,password,email};
         jdbcTemplate.update(query,args);
         return true;

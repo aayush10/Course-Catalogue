@@ -15,12 +15,12 @@ public class FetchVotesService {
     JdbcTemplate jdbcTemplate;
 
     public HashSet<String> getUpvotedBy(int entityId,String entityType){
-        String query = "SELECT * FROM heroku_2a781f4548f803a.votes WHERE entity_id = ? AND upvoted = 1 AND entity_type=?";
+        String query = "SELECT * FROM `heroku_2a781f4548f803a.votes` WHERE entity_id = ? AND upvoted = 1 AND entity_type=?";
         Object[] args = {entityId,entityType};
         return jdbcTemplate.query(query, new VotedByExtractor(),args);
     }
     public HashSet<String> getDownVotedBy(int entityId,String entityType){
-        String query = "SELECT * FROM heroku_2a781f4548f803a.votes WHERE entity_id = ? AND downvoted = 1 AND entity_type=?";
+        String query = "SELECT * FROM `heroku_2a781f4548f803a.votes` WHERE entity_id = ? AND downvoted = 1 AND entity_type=?";
         Object[] args = {entityId,entityType};
         return jdbcTemplate.query(query, new VotedByExtractor(),args);
     }

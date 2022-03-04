@@ -16,17 +16,17 @@ public class FetchTopicsService {
     JdbcTemplate jdbcTemplate;
 
     public List<Topic> fetchTopics(){
-        String query = "SELECT * FROM heroku_2a781f4548f803a.topic";
+        String query = "SELECT * FROM `heroku_2a781f4548f803a.topic`";
         List<Topic> topicList = jdbcTemplate.query(query,new TopicExtractor());
         return topicList;
     }
     public List<Topic> fetchTopic(String category){
-        String query = "SELECT * FROM heroku_2a781f4548f803a.topic WHERE Category = ?";
+        String query = "SELECT * FROM `heroku_2a781f4548f803a.topic` WHERE Category = ?";
         List<Topic> topicList = jdbcTemplate.query(query,new TopicExtractor(),category);
         return topicList;
     }
     public int getTopic(String topicName){
-        String query = "SELECT * FROM heroku_2a781f4548f803a.topic WHERE TopicName = ?";
+        String query = "SELECT * FROM `heroku_2a781f4548f803a.topic` WHERE TopicName = ?";
         List<Topic> topicList = jdbcTemplate.query(query,new TopicExtractor(),topicName);
         if(topicList.size() == 0){
             return -1;
