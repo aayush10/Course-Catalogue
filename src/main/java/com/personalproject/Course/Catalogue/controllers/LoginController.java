@@ -63,6 +63,7 @@ public class LoginController {
             model.addAttribute("userExist",true);
             return "register_user";
         }
+        System.out.println("username registered is: "+user.getUserName());
         request.login(user.getUserName(),user.getPassword());
         return "redirect:/languages";
     }
