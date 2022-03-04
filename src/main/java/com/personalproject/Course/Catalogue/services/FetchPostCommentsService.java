@@ -1,5 +1,6 @@
 package com.personalproject.Course.Catalogue.services;
 
+import com.personalproject.Course.Catalogue.comparators.CoursePostsComparator;
 import com.personalproject.Course.Catalogue.models.Comment;
 import com.personalproject.Course.Catalogue.resultsetextractors.PostCommentsExtractor;
 import com.personalproject.Course.Catalogue.resultsetextractors.UserNameFromCommentExtractor;
@@ -7,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class FetchPostCommentsService {

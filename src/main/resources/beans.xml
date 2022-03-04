@@ -11,9 +11,14 @@
     <bean id = "visitor" class="com.personalproject.Course.Catalogue.models.Visitor"/>
     <bean id = "person" class="com.personalproject.Course.Catalogue.models.Person"/>
     <bean id = "dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <constructor-arg name="url" value="jdbc:mysql://mysqlinstanceaws.cv7yvcrnwwdv.us-east-2.rds.amazonaws.com:3306/?user=root"/>
-        <constructor-arg name="username" value="ad_aayush06"/>
-        <constructor-arg name="password" value="aayush10rooney"/>
+<!--        <constructor-arg name="url" value="jdbc:mysql://mysqlinstanceaws.cv7yvcrnwwdv.us-east-2.rds.amazonaws.com:3306/?user=root"/>-->
+        <constructor-arg name="url" value="mysql://b99e7c3286ebe6:0f1bff95@us-cdbr-east-05.cleardb.net/heroku_2a781f4548f803a?reconnect=true"/>
+
+<!--        <constructor-arg name="username" value="ad_aayush06"/>-->
+        <constructor-arg name="username" value="b99e7c3286ebe6"/>
+
+<!--        <constructor-arg name="password" value="aayush10rooney"/>-->
+        <constructor-arg name="password" value="0f1bff95"/>
     </bean>
     <bean id = "jdbcConn" class="com.personalproject.Course.Catalogue.dbConn.JDBCConn"/>
     <bean id = "jdbcTemp" class = "org.springframework.jdbc.core.JdbcTemplate">
