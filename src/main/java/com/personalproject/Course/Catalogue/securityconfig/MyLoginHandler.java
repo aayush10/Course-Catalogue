@@ -39,7 +39,6 @@ public class MyLoginHandler extends SavedRequestAwareAuthenticationSuccessHandle
                 // clean this attribute from session
                 session.removeAttribute("url_prior_login");
                 // redirect
-                System.out.println("Did i come?>>?>??>?>?>");
                 getRedirectStrategy().sendRedirect(request, response, redirectUrl);
                 System.out.println("Redirecting...");
             }

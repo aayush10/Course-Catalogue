@@ -33,9 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         System.out.println(dataSource);
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("SELECT userName,password,enabled FROM coursedb.user" +
+                .usersByUsernameQuery("SELECT userName,password,enabled FROM `heroku_2a781f4548f803a.user`" +
                         " WHERE userName = ?")
-                .authoritiesByUsernameQuery("SELECT username,authority from coursedb.authority " +
+                .authoritiesByUsernameQuery("SELECT username,authority from `heroku_2a781f4548f803a.authority` " +
                         " WHERE username = ?")
                 .passwordEncoder(encoder());
     }
