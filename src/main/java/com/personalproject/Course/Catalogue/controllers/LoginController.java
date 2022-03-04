@@ -53,6 +53,7 @@ public class LoginController {
 
     @PostMapping("/register")
     public String submitUser(@ModelAttribute User user,HttpServletRequest request,Model model) throws ServletException {
+        String plainPass = user.getPassword();
         String encodedPass = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPass);
         System.out.println("Encoded pass "+user.getPassword());
@@ -64,7 +65,8 @@ public class LoginController {
             return "register_user";
         }
         System.out.println("username registered is: "+user.getUserName());
-        request.login(user.getUserName(),user.getPassword());
+
+        request.login(user.getUserName(),plainPass);
         return "redirect:/languages";
     }
     public String getHref(String referrer){
