@@ -9,10 +9,9 @@ import java.util.Collection;
 
 @RestController
 public class HomeController {
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(){
-        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        return "Welcome to home";
+        return "redirect:/languages";
     }
     @GetMapping("/user")
     public String user(){
